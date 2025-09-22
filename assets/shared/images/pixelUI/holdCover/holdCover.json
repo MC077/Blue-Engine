@@ -1,0 +1,9 @@
+{
+    "imagePath": "pixelUI/holdCover/holdCover",
+    "holdAnim": "pixel hold",
+    "holdOffset": [-88, -80],
+    "endAnim": "Splash",
+    "endOffset": [5, 35],
+    "scale": [6, 6]
+  }
+  
