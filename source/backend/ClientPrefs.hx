@@ -79,6 +79,7 @@ import states.TitleState;
 	public var discordRPC:Bool = true;
 	public var loadingScreen:Bool = true;
 	public var language:String = 'en-US';
+	public var freePlayChar:String = 'Boyfriend';
 }
 
 class ClientPrefs {

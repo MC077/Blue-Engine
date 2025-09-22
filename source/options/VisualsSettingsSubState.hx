@@ -5,6 +5,9 @@ import objects.StrumNote;
 import objects.NoteSplash;
 import objects.Alphabet;
 
+import lime.app.Application;
+import lime.graphics.Image;
+
 class VisualsSettingsSubState extends BaseOptionsMenu
 {
 	var noteOptionID:Int = -1;
@@ -153,7 +156,7 @@ class VisualsSettingsSubState extends BaseOptionsMenu
 			'What icon type do you prefer?',
 			'iconType',
 			STRING,
-			['Normal', 'Alt']);
+			['Norm', 'Alt']);
 		addOption(option);
 		option.onChange = onChangeIconType;
 		#end
@@ -331,7 +334,10 @@ class VisualsSettingsSubState extends BaseOptionsMenu
 	#if !mobile
 	function onChangeIconType()
 	{
-		trace('i need teaching');
+		var character = ClientPrefs.data.freePlayChar;
+		var iconType = ClientPrefs.data.iconType;
+		trace(Image.fromFile(Paths.modFolders('appIcons/$character/$iconType/iconOG')));
+		Application.current.window.setIcon(Image.fromFile(Paths.modFolders('appIcons/$character/$iconType/iconOG')));
 	}
 	#end
 }
