@@ -66,6 +66,24 @@ class VisualsSettingsSubState extends BaseOptionsMenu
 			addOption(option);
 			option.onChange = onChangeSplashSkin;
 		}
+		
+		var holdCovers:Array<String> = Mods.mergeAllTextsNamed('images/holdCovers/list.txt');
+		holdCovers.insert(0, 'None');
+		if(holdCovers.length > 0)
+		{
+			if(!holdCovers.contains(ClientPrefs.data.holdCoverSkin))
+				ClientPrefs.data.holdCoverSkin = ClientPrefs.defaultData.holdCoverSkin; //Reset to default if saved holdCoverSkin couldnt be found
+
+			holdCovers.insert(1, ClientPrefs.defaultData.holdCoverSkin); //Default skin always comes first
+			holdCovers.insert(2, 'Default');
+			var option:Option = new Option('Hold Covers:',
+				"Select your prefered Hold Cover variation.",
+				'holdCoverSkin',
+				STRING,
+				holdCovers);
+			addOption(option);
+			option.onChange = onChangeCoverSkin;
+		}
 
 		var option:Option = new Option('Note Splash Opacity',
 			'How much transparent should the Note Splashes be.',
@@ -130,6 +148,16 @@ class VisualsSettingsSubState extends BaseOptionsMenu
 		option.onChange = onChangeFPSCounter;
 		#end
 		
+		#if !mobile
+		var option:Option = new Option('App Icon Type:',
+			'What icon type do you prefer?',
+			'iconType',
+			STRING,
+			['Normal', 'Alt']);
+		addOption(option);
+		option.onChange = onChangeIconType;
+		#end
+		
 		var option:Option = new Option('Pause Music:',
 			"What song do you prefer for the Pause Screen?",
 			'pauseMusic',
@@ -172,7 +200,7 @@ class VisualsSettingsSubState extends BaseOptionsMenu
 		
 		switch(curOption.variable)
 		{
-			case 'noteSkin', 'splashSkin', 'splashAlpha':
+			case 'noteSkin', 'splashSkin', 'splashAlpha', 'holdCoverSkin':
 				if(!notesShown)
 				{
 					for (note in notes.members)
@@ -280,6 +308,11 @@ class VisualsSettingsSubState extends BaseOptionsMenu
 		}
 	}
 
+	function onChangeCoverSkin()
+	{
+		trace('smth should happen here');
+	}
+
 	override function destroy()
 	{
 		if(changedMusic && !OptionsState.onPlayState) FlxG.sound.playMusic(Paths.music('freakyMenu'), 1, true);
@@ -292,6 +325,13 @@ class VisualsSettingsSubState extends BaseOptionsMenu
 	{
 		if(Main.fpsVar != null)
 			Main.fpsVar.visible = ClientPrefs.data.showFPS;
+	}
+	#end
+
+	#if !mobile
+	function onChangeIconType()
+	{
+		trace('i need teaching');
 	}
 	#end
 }
