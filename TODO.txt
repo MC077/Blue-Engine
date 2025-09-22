@@ -1,0 +1,6 @@
+Add hold covers
+get app icon swapping working
+add noteColor preset options
+add RGB lua commands
+port over vanilla-slice freeplay stuffs
+come up with more ideas CHAIR
