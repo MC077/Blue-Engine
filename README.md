@@ -1,6 +1,6 @@
 # Friday Night Funkin' BLUE Engine
 
-> I'm blue, da-ba-dee, da-ba-di dye
+> I'm blue, da-ba-dee, da-ba-di
 
 Imagine being a fork of psych engine! lmao! <img src="https://vschar-official.com/images/Apollo.png" width="24">
 
