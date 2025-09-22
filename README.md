@@ -1,3 +1,12 @@
+# Friday Night Funkin' BLUE Engine
+
+> I'm blue, da-ba-dee, da-ba-di
+
+Imagine being a fork of psych engine! lmao! <img src="https://vschar-official.com/images/Apollo.png" width="24">
+
+<details>
+  <summary><h2>OG Psych README</h2></summary>
+ 
 ![PsychionalEngineLogo](docs/img/PsychEngineLogoTweak.png)
 
 Engine originally used on [Mind Games Mod](https://gamebanana.com/mods/301107), intended to be a fix for the vanilla version's many issues while keeping the casual play aspect of it. Also aiming to be an easier alternative to newbie coders.
