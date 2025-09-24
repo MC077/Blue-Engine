@@ -3,4 +3,8 @@ get app icon swapping working
 add noteColor preset options
 add RGB lua commands
 port over vanilla-slice freeplay stuffs
+
+Fix opponent icon positioning/touch up pixel icon stuff
+
+
 come up with more ideas CHAIR

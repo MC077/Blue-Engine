@@ -5,6 +5,7 @@ class HealthIcon extends FlxSprite
 	public var sprTracker:FlxSprite;
 	private var isPlayer:Bool = false;
 	private var char:String = '';
+	public var isPixel:Bool = false;
 
 	public function new(char:String = 'face', isPlayer:Bool = false, ?allowGPU:Bool = true)
 	{
@@ -40,10 +41,14 @@ class HealthIcon extends FlxSprite
 			animation.play(char);
 			this.char = char;
 
-			if(char.endsWith('-pixel'))
+			if(char.endsWith('-pixel')) {
 				antialiasing = false;
-			else
+				scale.x = 5;
+				scale.y = 5;
+				this.isPixel = true;
+			} else {
 				antialiasing = ClientPrefs.data.antialiasing;
+			}
 		}
 	}
 

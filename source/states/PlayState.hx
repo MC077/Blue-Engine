@@ -1872,11 +1872,18 @@ class PlayState extends MusicBeatState
 	// Health icon updaters
 	public dynamic function updateIconsScale(elapsed:Float)
 	{
+
 		var mult:Float = FlxMath.lerp(1, iconP1.scale.x, Math.exp(-elapsed * 9 * playbackRate));
+		if (iconP1.isPixel) {
+			mult = FlxMath.lerp(5, iconP1.scale.x, Math.exp(-elapsed * 9 * playbackRate));
+		}
 		iconP1.scale.set(mult, mult);
 		iconP1.updateHitbox();
 
 		var mult:Float = FlxMath.lerp(1, iconP2.scale.x, Math.exp(-elapsed * 9 * playbackRate));
+		if (iconP2.isPixel) {
+			mult = FlxMath.lerp(5, iconP2.scale.x, Math.exp(-elapsed * 9 * playbackRate));
+		}
 		iconP2.scale.set(mult, mult);
 		iconP2.updateHitbox();
 	}
@@ -1884,8 +1891,17 @@ class PlayState extends MusicBeatState
 	public dynamic function updateIconsPosition()
 	{
 		var iconOffset:Int = 26;
-		iconP1.x = healthBar.barCenter + (150 * iconP1.scale.x - 150) / 2 - iconOffset;
-		iconP2.x = healthBar.barCenter - (150 * iconP2.scale.x) / 2 - iconOffset * 2;
+		if (!iconP1.isPixel) {
+			iconP1.x = healthBar.barCenter + (150 * iconP1.scale.x - 150) / 2 - iconOffset;
+		} else {
+			iconP1.x = healthBar.barCenter + (32 * iconP1.scale.x - 150) / 2 - iconOffset;
+		}
+
+		if (!iconP2.isPixel) {
+			iconP2.x = healthBar.barCenter - (150 * iconP2.scale.x) / 2 - iconOffset;
+		} else {
+			iconP2.x = healthBar.barCenter - (32 * iconP2.scale.x) / 2 - iconOffset;
+		}
 	}
 
 	var iconsAnimations:Bool = true;
@@ -3222,8 +3238,16 @@ class PlayState extends MusicBeatState
 		if (generatedMusic)
 			notes.sort(FlxSort.byY, ClientPrefs.data.downScroll ? FlxSort.ASCENDING : FlxSort.DESCENDING);
 
-		iconP1.scale.set(1.2, 1.2);
-		iconP2.scale.set(1.2, 1.2);
+		if (iconP1.isPixel) {
+			iconP1.scale.set(1.2 * 5, 1.2 * 5);
+		} else {
+			iconP1.scale.set(1.2, 1.2);
+		}
+		if (iconP2.isPixel) {
+			iconP2.scale.set(1.2 * 5, 1.2 * 5);
+		} else {
+			iconP2.scale.set(1.2, 1.2);
+		}
 
 		iconP1.updateHitbox();
 		iconP2.updateHitbox();
