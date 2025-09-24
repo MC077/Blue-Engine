@@ -336,8 +336,22 @@ class VisualsSettingsSubState extends BaseOptionsMenu
 	{
 		var character = ClientPrefs.data.freePlayChar;
 		var iconType = ClientPrefs.data.iconType;
-		trace(Image.fromFile(Paths.modFolders('appIcons/$character/$iconType/iconOG')));
-		Application.current.window.setIcon(Image.fromFile(Paths.modFolders('appIcons/$character/$iconType/iconOG')));
+
+		var path = 'images/appIcons/$character/$iconType/iconOG.png';
+		var woah = Paths.modFolders(path);
+		if (!FileSystem.exists(woah)) {
+			// trace('no icon inside mod folders');
+
+			woah = Paths.getPath(path);
+			if (!FileSystem.exists(woah)) {
+				// trace('no icon inside assets folder????');
+				return;
+			}
+		}
+
+		// trace('selected: $woah');
+		Application.current.window.setIcon(Image.fromFile(woah));
 	}
 	#end
+	
 }
