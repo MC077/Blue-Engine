@@ -6,6 +6,9 @@ import flixel.input.gamepad.FlxGamepadInputID;
 
 import states.TitleState;
 
+import lime.app.Application;
+import lime.graphics.Image;
+
 // Add a variable here and it will get automatically saved
 @:structInit class SaveVariables {
 	public var downScroll:Bool = false;
@@ -158,8 +161,9 @@ class ClientPrefs {
 	}
 
 	public static function saveSettings() {
-		for (key in Reflect.fields(data))
+		for (key in Reflect.fields(data)) {
 			Reflect.setField(FlxG.save.data, key, Reflect.field(data, key));
+		}
 
 		#if ACHIEVEMENTS_ALLOWED Achievements.save(); #end
 		FlxG.save.flush();
@@ -176,9 +180,11 @@ class ClientPrefs {
 	public static function loadPrefs() {
 		#if ACHIEVEMENTS_ALLOWED Achievements.load(); #end
 
-		for (key in Reflect.fields(data))
-			if (key != 'gameplaySettings' && Reflect.hasField(FlxG.save.data, key))
+		for (key in Reflect.fields(data)) {
+			if (key != 'gameplaySettings' && Reflect.hasField(FlxG.save.data, key)) {
 				Reflect.setField(data, key, Reflect.field(FlxG.save.data, key));
+			}
+		}
 		
 		if(Main.fpsVar != null)
 			Main.fpsVar.visible = data.showFPS;
@@ -236,6 +242,12 @@ class ClientPrefs {
 					if(gamepadBinds.exists(control)) gamepadBinds.set(control, keys);
 			}
 			reloadVolumeKeys();
+		}
+
+
+
+		if (FlxG.save.data.iconType != null) {
+			Application.current.window.setIcon(Image.fromFile(options.VisualsSettingsSubState.findAppIcon(data.freePlayChar, data.iconType, 'iconOG.png')));
 		}
 	}
 

@@ -14,6 +14,9 @@ class VisualsSettingsSubState extends BaseOptionsMenu
 	var notes:FlxTypedGroup<StrumNote>;
 	var splashes:FlxTypedGroup<NoteSplash>;
 	var noteY:Float = 90;
+
+
+
 	public function new()
 	{
 		title = Language.getPhrase('visuals_menu', 'Visuals Settings');
@@ -337,21 +340,19 @@ class VisualsSettingsSubState extends BaseOptionsMenu
 		var character = ClientPrefs.data.freePlayChar;
 		var iconType = ClientPrefs.data.iconType;
 
-		var path = 'images/appIcons/$character/$iconType/iconOG.png';
-		var woah = Paths.modFolders(path);
-		if (!FileSystem.exists(woah)) {
-			// trace('no icon inside mod folders');
-
-			woah = Paths.getPath(path);
-			if (!FileSystem.exists(woah)) {
-				// trace('no icon inside assets folder????');
-				return;
-			}
-		}
-
-		// trace('selected: $woah');
-		Application.current.window.setIcon(Image.fromFile(woah));
+		Application.current.window.setIcon(Image.fromFile(VisualsSettingsSubState.findAppIcon(character, iconType, 'iconOG.png')));
 	}
 	#end
+
+	public static function findAppIcon(character:String, iconType:String, file:String):String {
+		var path = 'images/appIcons/$character/$iconType/$file';
+		var woah = Paths.modFolders(path);
+		if (!FileSystem.exists(woah)) {
+			woah = Paths.getPath(path);
+			if (!FileSystem.exists(woah)) trace('[WARN] App icon does not exist: $path');
+		}
+
+		return woah;
+	}
 	
 }
