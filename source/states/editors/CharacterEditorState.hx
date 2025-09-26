@@ -91,7 +91,7 @@ class CharacterEditorState extends MusicBeatState implements PsychUIEventHandler
 		var boyfriend:FlxSprite = new FlxSprite(bfPosition.x, bfPosition.y + 350).loadGraphic(Paths.image('editors/silhouetteBF'));
 		boyfriend.antialiasing = ClientPrefs.data.antialiasing;
 		boyfriend.active = false;
-		boyfriend.offset.set(-6, 2);
+		boyfriend.offset.set(-6, 0);
 		silhouettes.add(boyfriend);
 
 		silhouettes.alpha = 0.25;
