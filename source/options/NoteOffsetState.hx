@@ -167,9 +167,14 @@ class NoteOffsetState extends MusicBeatState
 		updateMode();
 		_lastControllerMode = true;
 
-		Conductor.bpm = 128.0;
-		FlxG.sound.playMusic(Paths.music('offsetSong'), 1, true);
-
+		
+		var character = ClientPrefs.data.freePlayChar;
+		if (character == 'Boyfriend') {
+			FlxG.sound.playMusic(Paths.music('chocolate'), 1, true);
+			Conductor.bpm = 128.0;
+		} else {
+			FlxG.sound.playMusic(Paths.music('chocolate-$character'), 1, true);
+		}
 		super.create();
 	}
 
