@@ -112,6 +112,11 @@ class RGBShaderReference
 		_owner.shader = value ? parent.shader : null;
 		return (enabled = value);
 	}
+	private function set_canChange(value:Bool)
+	{
+		_owner.shader = value ? parent.shader : null;
+		return (canChange = value);
+	}
 
 	public var allowNew = true;
 	private function cloneOriginal()
