@@ -174,6 +174,8 @@ class NoteOffsetState extends MusicBeatState
 			Conductor.bpm = 128.0;
 		} else {
 			FlxG.sound.playMusic(Paths.music('chocolate-$character'), 1, true);
+			//this doesnt work
+			//Conductor.bpm = Float.parseFloat(Paths.getTextFromFile('music/chocolate-$character.txt'));
 		}
 		super.create();
 	}

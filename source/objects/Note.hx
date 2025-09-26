@@ -206,6 +206,7 @@ class Note extends FlxSprite
 					rgbShader.r = 0xFF101010;
 					rgbShader.g = 0xFFFF0000;
 					rgbShader.b = 0xFF990022;
+					rgbShader.canChange = false;
 
 					// splash data and colors
 					noteSplashData.r = 0xFFFF0000;
